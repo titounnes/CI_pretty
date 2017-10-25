@@ -53,9 +53,22 @@ $obj->session = [
 ];
 method yang tersedia untuk saat ini : grid, saveOne, remove, append,  
 
-### 2. Debug 
+### 2. Hapus Modul
+Perintah
+php Destroy.php [role_user]/[method]/[path/to/config/sql]
+Contoh
+php Destroy.php operator/grid/user/student
+Menghapus
+File aplication/query/operator/user/student.grid.php
+
+php Destroy.php operator
+Menghapus 
+file application/controllers/Operator.php
+directory aaplication/query/operator/
+
+### 3. Debug 
 Akses dengan browser ke url http://domain.local/debug/operator/grid/user/student
 
-### 3. Pengujian
+### 4. Pengujian
 Akses dengan browser ke url http://domain.local/api.html
 
