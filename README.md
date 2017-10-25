@@ -4,8 +4,8 @@ Web service builder
 Masih Dalam Tahap pengembangan
 
 ## Petunjuk Instalasi
-git clone https://github.com/titounnes/CI_pretty.git
-Seting database di application/database.php
+1. git clone https://github.com/titounnes/CI_pretty.git
+2. Seting database di application/database.php
 
 # Fitur
 
