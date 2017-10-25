@@ -7,9 +7,9 @@ Masih Dalam Tahap pengembangan
 git clone https://github.com/titounnes/CI_pretty.git
 Seting database di application/database.php
 
-##Fitur
+## Fitur
 
-###1. Generate modul dengan perintah 
+### 1. Generate modul dengan perintah 
 php Build.php [role_user]/[method]/[path/to/config/sql] [table_name]/[table_alias]
 
 Contoh Build.php operator/grid/user/student users/u
@@ -53,9 +53,9 @@ $obj->session = [
 ];
 method yang tersedia untuk saat ini : grid, saveOne, remove, append,  
 
-###2. Debug 
+### 2. Debug 
 Akses dengan browser ke url http://domain.local/debug/operator/grid/user/student
 
-###3. Pengujian
+### 3. Pengujian
 Akses dengan browser ke url http://domain.local/api.html
 
