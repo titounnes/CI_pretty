@@ -7,7 +7,7 @@ Web service builder
 ## Petunjuk Instalasi
 - Buka terminal atau command prompt pada folder www / htdocs
 - Jalan command `git clone https://github.com/titounnes/CI_pretty.git`
-- Seting database pada file `application/database.php`
+- Seting database pada file `application/config/database.php`
 
 # Fitur
 
@@ -15,7 +15,9 @@ CI_Pretty memiliki beberapa fitur diantaranya :
 
 ### Module Generator
 
-Anda dapat membuat sebuah modul dengan menjalankan command `php Build.php [role_user]/[method]/[path/to/config/sql] [table_name]/[table_alias]` pada folder project anda
+Anda dapat membuat sebuah modul dengan menjalankan command 
+`php Build.php [role_user]/[method]/[path/to/config/sql] [table_name]/[table_alias]` 
+pada folder project anda
 
 #### Contoh penggunaan
 
