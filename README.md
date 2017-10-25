@@ -33,11 +33,11 @@ Untuk mengakses: http://example.com/operator/grid/user/student.
 Untuk pengujian: http://example.com/debug/operator/grid/user/student.
 ```
 
-Dari hasil generate maka akan terbuat sebuah file sebagai berikut :
+Dari hasil generate maka akan terbentuk sebuah file sebagai berikut :
 - application/controllers/Operator.php (jika belum ada)
-- application/query/user/student.grid.php
+- application/query/user/student/grid.php
 
-Pada file `application/query/user/student.grid.php` akan terbuat sebuah template untuk kebutuhan Query
+Pada file `application/query/user/student/grid.php` akan terbuat sebuah template untuk kebutuhan Query
 
 ```php
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
