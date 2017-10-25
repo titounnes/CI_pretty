@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>e-Project | Integrated LMS in AIS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+  <input type="text" class="form-control" id="role" name="role" placeholder="Role User" value="operator">
+  <select name="method" id="method" class="form-control">
+    <option value="grid">grid
+    <option value="dropdown">dropdown
+  </select>
+  <input type="text" name="path" id="path" class="form-control" value="course" placeholder="Path Modul">
+  <textarea name="token" id="token" class="form-control"> eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInNlY3JldCI6ImFiZTA2NTU1MWU5ZWQwZTM5Y2E3YTBjYTQ3NmJhNDczMTY4N2RiZDJlYmFhZDg2ZmNkNjQ0Nzg1MGFkMzYzNjJkNzk3MWQ2NzYwZDA1YjVmMTBkZjE4MmM1NjI2MWZmMGFlMzU3ODI3YjU4MzIxMjc5YjkxYmM1ZWVlNGYyYmVlczFXUlwvWlBxcVFST3NVNlVnQlhaU3FSUGZEK0lJSHNOOFlzeXI0eGNjMzUwbHVMbTRjMmNvUzJSVnZpMFQ3YmxTUU9KaVI2bkRGY0Jib0w2Zm5uK2lxU1pKUHZCU3JQeUh0dDNBSUdpTGhpdkU1a2xTK25vcXg3b1czTzM3dmloV1wvZkZRdzZzQzk0U1BLVThuaDB4VDg1eU43ZHhGUXh4eFlTNGVPVThMd2Y3WTl4N2taT3lTM2NFcEVwMnFxMWkrWWt0bk03S0Yxa3Z4SExrd1JCMVJzcWhDbXFIS3NHMmNMVUVsOWVTR3ZZPSJ9.eyJ1c2VyX2lkIjoiMzEzOSIsInJvbGVzIjpbImFkbWluIiwidGVhY2hlciIsInN0dWRlbnQiLCJvcGVyYXRvciJdLCJqb2JzIjpbInBhcmVudENsYXNzcm9vbSJdLCJsZWFkZXIiOm51bGwsInBhcmVudENsYXNzcm9vbSI6IjE0IiwiaWRlbnRpdHlWYWx1ZSI6IjEzMjMwNzI3NyIsImlkZW50aXR5IjoidXNlcm5hbWUiLCJ5ZWFyIjoyMDE3LCJzZW1lc3RlciI6MiwibG9naW4iOnRydWV9.b3foYFcjoOrlAqzkaMtKolf6qeVzsYhaIatMXVWcfTI </textarea>
+  <a href="#" onclick="test()" class="btn btn-default">Test</a>
+  <div id="output"></div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  function parseJWT(token){
+    var payload = token.split('.')[1];
+    var payload = payload.replace(/-/,'+').replace(/_/,'/');
+    return JSON.parse(window.atob(payload));
+  }
+  function test(){
+    var url = $('#role').val()+'/'+$('#method').val()+'/'+$('#path').val();
+    $('#output').html('')
+    $.ajax({
+      url: url,
+      method: 'POST',
+      headers: {
+        "Bearer": $('#token').val()
+      },
+      success: function(response){
+        $('#output').html('<h2>String URL : '+url+'<h2>');
+        $('#output').append('<h2>Session:</h2><p>'+JSON.stringify(parseJWT($('#token').val()))+'</p2>')
+        if(response.jwt==false){
+          $('#output').append('User/role tidak punya hak untuk mengakses data ini');
+          return false;
+        }
+        if(typeof response.data == 'undefined'){
+          $('#output').append('Tidak ada output');
+          return false;
+        }
+        $('#output').append('<h3>Output:</h3><p>'+JSON.stringify(response.data)+'</p>');
+
+      },
+      error: function() {
+        $('#output').html('<h2>Permintaan gagal.<h2>');
+        $('#output').append('<h2>Modul '+url+' belum tersedia atau user tidak punya hak untuk mengakses data yang diminta<h2>');
+      },
+    });
+  }
+  </script>
+</body>
+
+</html>
