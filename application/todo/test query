@@ -1,0 +1,136 @@
+test query
+Create tabel and insert data
+CREATE TABLE IF NOT EXISTS LuxLog (
+  Sensor INT NOT NULL AUTO_INCREMENT,
+  Lux INT,
+  PRIMARY KEY(Sensor)
+);
+INSERT INTO LuxLog(Lux) VALUES (60);
+INSERT INTO LuxLog(Lux) VALUES (4);
+INSERT INTO LuxLog(Lux) VALUES (88);
+INSERT INTO LuxLog(Lux) VALUES (67);
+INSERT INTO LuxLog(Lux) VALUES (72);
+INSERT INTO LuxLog(Lux) VALUES (54);
+INSERT INTO LuxLog(Lux) VALUES (52);
+INSERT INTO LuxLog(Lux) VALUES (70);
+INSERT INTO LuxLog(Lux) VALUES (8);
+INSERT INTO LuxLog(Lux) VALUES (90);
+INSERT INTO LuxLog(Lux) VALUES (77);
+INSERT INTO LuxLog(Lux) VALUES (50);
+INSERT INTO LuxLog(Lux) VALUES (74);
+INSERT INTO LuxLog(Lux) VALUES (63);
+INSERT INTO LuxLog(Lux) VALUES (91);
+INSERT INTO LuxLog(Lux) VALUES (18);
+INSERT INTO LuxLog(Lux) VALUES (28);
+INSERT INTO LuxLog(Lux) VALUES (56);
+INSERT INTO LuxLog(Lux) VALUES (23);
+INSERT INTO LuxLog(Lux) VALUES (85);
+INSERT INTO LuxLog(Lux) VALUES (69);
+INSERT INTO LuxLog(Lux) VALUES (3);
+INSERT INTO LuxLog(Lux) VALUES (20);
+INSERT INTO LuxLog(Lux) VALUES (44);
+INSERT INTO LuxLog(Lux) VALUES (15);
+INSERT INTO LuxLog(Lux) VALUES (98);
+INSERT INTO LuxLog(Lux) VALUES (21);
+INSERT INTO LuxLog(Lux) VALUES (59);
+INSERT INTO LuxLog(Lux) VALUES (30);
+INSERT INTO LuxLog(Lux) VALUES (49);
+INSERT INTO LuxLog(Lux) VALUES (12);
+INSERT INTO LuxLog(Lux) VALUES (5);
+INSERT INTO LuxLog(Lux) VALUES (64);
+INSERT INTO LuxLog(Lux) VALUES (57);
+INSERT INTO LuxLog(Lux) VALUES (41);
+INSERT INTO LuxLog(Lux) VALUES (26);
+INSERT INTO LuxLog(Lux) VALUES (89);
+INSERT INTO LuxLog(Lux) VALUES (43);
+INSERT INTO LuxLog(Lux) VALUES (86);
+INSERT INTO LuxLog(Lux) VALUES (25);
+INSERT INTO LuxLog(Lux) VALUES (19);
+INSERT INTO LuxLog(Lux) VALUES (47);
+INSERT INTO LuxLog(Lux) VALUES (84);
+INSERT INTO LuxLog(Lux) VALUES (35);
+INSERT INTO LuxLog(Lux) VALUES (66);
+INSERT INTO LuxLog(Lux) VALUES (37);
+INSERT INTO LuxLog(Lux) VALUES (24);
+INSERT INTO LuxLog(Lux) VALUES (73);
+INSERT INTO LuxLog(Lux) VALUES (33);
+INSERT INTO LuxLog(Lux) VALUES (58);
+INSERT INTO LuxLog(Lux) VALUES (61);
+INSERT INTO LuxLog(Lux) VALUES (27);
+INSERT INTO LuxLog(Lux) VALUES (42);
+INSERT INTO LuxLog(Lux) VALUES (87);
+INSERT INTO LuxLog(Lux) VALUES (32);
+INSERT INTO LuxLog(Lux) VALUES (29);
+INSERT INTO LuxLog(Lux) VALUES (93);
+INSERT INTO LuxLog(Lux) VALUES (17);
+INSERT INTO LuxLog(Lux) VALUES (78);
+INSERT INTO LuxLog(Lux) VALUES (2);
+INSERT INTO LuxLog(Lux) VALUES (68);
+INSERT INTO LuxLog(Lux) VALUES (71);
+INSERT INTO LuxLog(Lux) VALUES (94);
+INSERT INTO LuxLog(Lux) VALUES (95);
+INSERT INTO LuxLog(Lux) VALUES (39);
+INSERT INTO LuxLog(Lux) VALUES (80);
+INSERT INTO LuxLog(Lux) VALUES (76);
+INSERT INTO LuxLog(Lux) VALUES (31);
+INSERT INTO LuxLog(Lux) VALUES (34);
+INSERT INTO LuxLog(Lux) VALUES (99);
+INSERT INTO LuxLog(Lux) VALUES (36);
+INSERT INTO LuxLog(Lux) VALUES (51);
+INSERT INTO LuxLog(Lux) VALUES (75);
+INSERT INTO LuxLog(Lux) VALUES (9);
+INSERT INTO LuxLog(Lux) VALUES (62);
+INSERT INTO LuxLog(Lux) VALUES (11);
+INSERT INTO LuxLog(Lux) VALUES (82);
+INSERT INTO LuxLog(Lux) VALUES (16);
+INSERT INTO LuxLog(Lux) VALUES (83);
+INSERT INTO LuxLog(Lux) VALUES (65);
+INSERT INTO LuxLog(Lux) VALUES (96);
+INSERT INTO LuxLog(Lux) VALUES (97);
+INSERT INTO LuxLog(Lux) VALUES (6);
+INSERT INTO LuxLog(Lux) VALUES (92);
+INSERT INTO LuxLog(Lux) VALUES (22);
+INSERT INTO LuxLog(Lux) VALUES (13);
+INSERT INTO LuxLog(Lux) VALUES (81);
+INSERT INTO LuxLog(Lux) VALUES (48);
+INSERT INTO LuxLog(Lux) VALUES (53);
+INSERT INTO LuxLog(Lux) VALUES (55);
+INSERT INTO LuxLog(Lux) VALUES (100);
+INSERT INTO LuxLog(Lux) VALUES (10);
+INSERT INTO LuxLog(Lux) VALUES (7);
+INSERT INTO LuxLog(Lux) VALUES (79);
+INSERT INTO LuxLog(Lux) VALUES (40);
+INSERT INTO LuxLog(Lux) VALUES (45);
+INSERT INTO LuxLog(Lux) VALUES (14);
+INSERT INTO LuxLog(Lux) VALUES (46);
+INSERT INTO LuxLog(Lux) VALUES (1);
+INSERT INTO LuxLog(Lux) VALUES (38);
+
+Calculate quartile
+SET @number_of_rows := (SELECT COUNT(*) FROM LuxLog);
+SET @quartile := (ROUND(@number_of_rows*0.25));
+SET @sql_Q1 := (CONCAT('(SELECT "Q1" AS quartile_name , Lux, Sensor FROM LuxLog ORDER BY Lux DESC LIMIT 1 OFFSET ', @quartile,')'));
+SET @sql_Q3 := (CONCAT('( SELECT "Q3" AS quartile_name , Lux, Sensor FROM LuxLog ORDER BY Lux ASC LIMIT 1 OFFSET ', @quartile,');'));
+SET @sql := (CONCAT(@sql_Q1,' UNION ',@sql_Q3));
+PREPARE stmt1 FROM @sql;
+EXECUTE stmt1;
+
+Calculate Median
+SET @number_of_rows := (SELECT COUNT(*) FROM LuxLog);
+SET @median := (ROUND(@number_of_rows*0.5));
+SET @sql_Me := (CONCAT('(SELECT "Me" AS quartile_name , Lux, Sensor FROM LuxLog ORDER BY Lux DESC LIMIT 1 OFFSET ', @median,')'));
+PREPARE stmt1 FROM @sql_Me;
+EXECUTE stmt1;
+
+SET @number_of_student := (SELECT COUNT(*) FROM cognitive_scores);
+SET @mid_pos := (ROUND(@number_of_student0.5));
+SET @sql := (CONCAT('(SELECT student_id ', ' FROM cognitive_scores ORDER BY student_id DESC LIMIT ',@mid_pos,');'));
+PREPARE stmt1 FROM @sql;
+EXECUTE stmt1;
+
+SET @number_of_rows := (SELECT COUNT(*) FROM cognitive_scores WHERE quiz_id=1 GROUP BY student_id);
+SET @number_of_cols := (SELECT COUNT(*) FROM cognitive_scores WHERE quiz_id=1 GROUP BY instrument_id);
+SET @sql := (CONCAT('(SELECT ',@number_of_rows,' UNION  SELECT ', @number_of_cols, ' FROM cognitive_scores);'));
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+

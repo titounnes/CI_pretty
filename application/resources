@@ -1,0 +1,33 @@
+resources
+	matter-user
+	project-user
+	performance-user
+	project_instrument-user
+	performance_instrument-user
+	quiz-user
+
+relation
+	matter-course-classroom
+	project-course-classroom
+	performance-course-classroom
+	quiz-course-classroom
+
+activity
+	project-instrument
+	performance-instrument
+
+matter : id, title, deleted_at
+project: id, title, deleted_at
+performance: id, title, deleted_at
+project_instrument: id, title, deleted_at
+performance_instrument: id, title, deleted_at
+quiz: id, question, answer
+
+matter_course_classroom: matter_id, course_id, classroom_id
+project_course_classroom: course_id, course_id, classroom_id, submission, peer, revision, finish
+performance_course_classroom: performance_id, course_id, classroom_id, start, finish
+quiz_course_classroom: qioz_id, xourse_id, classroom_id
+project_instrument_project_course_classroom : project_id, course_id, course_id, classroom_id
+performance_instrument_project_course_classroom : performance_id, course_id, course_id, classroom_id
+
+product: project_id, classroom_id
