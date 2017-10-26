@@ -15,8 +15,8 @@ CI_Pretty memiliki beberapa fitur diantaranya :
 
 ### Module Generator
 
-Anda dapat membuat sebuah modul dengan menjalankan command 
-`php Build.php [role_user]/[method]/[path/to/config/sql] [table_name]/[table_alias]` 
+Anda dapat membuat sebuah modul dengan menjalankan command
+`php Build.php [role_user]/[method]/[path_to_config_sql] [table_name]/[table_alias]`
 pada folder project anda
 
 #### Contoh penggunaan
@@ -25,7 +25,7 @@ pada folder project anda
 $ php Build.php operator/grid/user/student users/u
 ```
 
-Setelah perintah dijalankan, jika berhasil akan muncul 
+Setelah perintah dijalankan, jika berhasil akan muncul
 
 ```
 Sedang memproses....
@@ -64,7 +64,7 @@ $obj->group = '';
 $obj->order = '';
 $obj->exclude = '';
 $obj->session = [
-	
+
 ];
 ```
 
@@ -86,7 +86,7 @@ Maka command tersebut akan menghapus file `application/query/operator/user/stude
 
 Maka command tersebut akan menghapus file `file application/controllers/Operator.php` pada folder `application/query/operator/`
 
-### Debug 
+### Debug
 
 Akses dengan browser ke url http://domain.local/debug/operator/grid/user/student
 
