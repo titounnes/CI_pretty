@@ -4,6 +4,7 @@ define('EXT', '.php');
 define('QUERY', 'application/query/');
 
 $method = [
+  'login',
   'grid',
   'append',
   'saveOne',
@@ -21,16 +22,16 @@ if (php_sapi_name() != "cli") {
 if(!isset($argv[1])){
   echo "Gagal..\n";
   echo "Argumen harus disi harus diisi.\n";
-  echo "Format argumen [role]/[method]/path/to/sql [namatable/alias]\n";
+  echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
   echo "Contoh: php Build.php operator/grid/user/author users/u\n";
   return false;
 }
 
 $par = explode('/',$argv[1]);
-if(count($par)<3){
+if(count($par)<2){
   echo "Gagal..\n";
-  echo "Argumen minimal terdiri dari 3 segment: role, method dan path.\n";
-  echo "Format argumen [role]/[method]/path/to/sql [namatable/alias]\n";
+  echo "Argumen minimal terdiri dari 3 segment: role (wajib), method (wajib) dan path (opsional).\n";
+  echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
   echo "Contoh: php Build.php operator/grid/user/author users/u\n";
   return false;
 }
@@ -63,11 +64,12 @@ if(!file_exists($role)){
 }
 
 $path = $role;
-
-for($i=2;  $i < count($par); $i++){
-  $path .=  '/' . strtolower($par[$i]);
-  if(!file_exists($path)){
-    mkdir($path, 0755);
+if(count($par)>2){
+  for($i=2;  $i < count($par); $i++){
+    $path .=  '/' . strtolower($par[$i]);
+    if(!file_exists($path)){
+      mkdir($path, 0755);
+    }
   }
 }
 
@@ -112,6 +114,13 @@ $txt .= "\$obj = new stdClass();\n";
 $txt .= "\$obj->table = '".$tableName." ".$tableAs."';\n";
 
 switch ($par[1]){
+  case 'login' :
+    $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs ).".*';\n";
+    $txt .="\$obj->join = [\n";
+    $txt .= "//\t['','',''],\n";
+    $txt .= "];\n";
+    $txt .="\$obj->key = 'identity';\n";
+    break;
   case 'grid' :
     $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs ).".*';\n";
     $txt .="\$obj->join = [\n";
