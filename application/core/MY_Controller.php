@@ -90,16 +90,17 @@ class MY_Debug extends CI_Controller
     {
         parent::__construct();
 
-        date_default_timezone_set('Asia/Jakarta');
-
         $this->load->library(['encryption','jwt','database','response']);
 
         if (isset($this->uri->segments[4])) {
             $qry = QUERY . $this->uri->segments[2] . '/' . str_replace('_', '/', $this->uri->segments[4]) . '/'. $this->uri->segments[3] . '.php';
-            if (file_exists($qry)) {
-                require_once $qry;
-                $this->obj = $obj;
-            }
+        }else{
+          $qry = QUERY . $this->uri->segments[2] . '/' . $this->uri->segments[3] . '.php';
+        }
+
+        if (file_exists($qry)) {
+            require_once $qry;
+            $this->obj = $obj;
         }
 
         if (strtoupper($this->uri->segments[2]) != 'GUEST') {

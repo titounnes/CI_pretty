@@ -15,10 +15,21 @@ class Debuger
       unset($url[3]);
       echo "Nama table belum didefinisikan di ". QUERY .implode('/',$url)."/".$file.".php";
     }
+
     public function render()
     {
         echo '<h2>Query Statement</h2>';
         switch(strtolower($this->CI->uri->segments[3])){
+          case 'login' :
+            $this->CI->load->library('login');
+            if(!isset($this->CI->obj->table) || $this->CI->obj->table == ''){
+              $this->notable();
+            } else{
+              echo $this->CI->login->debug();
+            echo '<h2>Query Result</h2>';
+            //echo json_encode($this->CI->database->getRow());
+          }
+          break;
           case 'grid' :
             if(!isset($this->CI->obj->table) || $this->CI->obj->table == ''){
               $this->notable();
