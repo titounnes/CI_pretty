@@ -1,0 +1,437 @@
+#home-icon{
+    max-width: 1000px;
+    margin:auto;
+}
+.btn-home{
+  min-width: 300px;
+}
+.modal-dialog{
+  background-color: #ffffff;
+  padding: 10px 10px 10px 10px;
+}
+html {
+  background-color: #fff;
+}
+textarea {
+  min-width: 250px;
+}
+
+textarea:read-only, input:read-only, textarea:-moz-read-only, input:-moz-read-only {
+  background-color: blue;
+}
+
+optgroup option{
+  margin-left: 10px;
+}
+input {
+  width: auto;
+  min-width: 60px;
+}
+
+input[type="date"] {
+  max-width: 160px;
+}
+
+tbody td div li {
+  list-style-type: none;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  /* Chrome, Safari, Opera */
+  -moz-appearance: checkbox;
+  /* Firefox */
+  -ms-appearance: checkbox;
+  /* not currently supported */
+  width: 1.4em;
+  height: 1.4em;
+  min-width: 20px;
+  border-radius: 0.6em;
+  box-shadow: 1px 1px 1px #000;
+  margin-right: 12px;
+  padding: 5px 5px 5px 5px;
+}
+
+input[type="number"] {
+  text-align: right;
+}
+
+.hanging-indent {
+  padding-left: 48px;
+  text-indent: -48px;
+}
+
+input[type="datetime-local"] {
+  max-width: 230px;
+}
+
+.jumbotron {
+  padding: 10px 10px 10px 10px;
+  margin-top: 25px;
+  background: #fff;
+}
+
+.text-tool {
+  font-size: 15px;
+  color: #fff;
+}
+
+#hint {
+  color: #000;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px 10px 10px 10px;
+  width: 76%;
+}
+
+.select-grid {
+  min-width: 230px;
+}
+
+.content {
+  margin-top: 40px;
+}
+
+.content-wrapper {
+  padding: 10px 0 10px 0;
+}
+
+#workspace, .form-horizontal {
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #eee;
+  padding-bottom: 0px;
+  height: 100;
+}
+
+#workspace {
+  overflow-y: auto;
+}
+
+#tableBody tr td div {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.row-top {
+  border-top: solid 2px #c0c0c0;
+  margin-top: 2px;
+}
+
+thead tr th {
+  font-size: 18px;
+  vertical-align: top;
+}
+
+.table-responsive {
+  background-color: #fff;
+}
+
+tbody tr td {
+  vertical-align: top;
+}
+
+.input-group {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.form-cell {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#text-body img, #text-body p img, #text-body span img, #text-body p span img {
+  max-width: 780px;
+}
+
+.btn {
+  margin: 5px 5px 5px 5px;
+  border-right: 1px solid #2C0B0B;
+  border-bottom: 1px solid #2C0B0B;
+  border-top: 1px solid #d2d6de;
+  border-left: 1px solid #d2d6de;
+}
+
+.main-sidebar {
+  padding-top: 60px;
+  padding-bottom: 5px;
+  overflow: auto;
+}
+
+#navbar, #footer {
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+}
+
+#footer, footer {
+  bottom: 0px;
+  padding: 5px 5px 5px 5px;
+}
+
+#btn-bar {
+  margin: auto;
+  text-align: center;
+}
+
+.btn-lg {
+  min-width: 52px;
+}
+
+#container {
+  max-width: 600px;
+  margin-top: 70px;
+  padding-left: 20px;
+}
+
+#message-box {
+  width: 90%;
+  padding: 0px 10px 10px 10px;
+  position: fixed;
+  bottom: 10px;
+}
+
+#myModal {
+  margin: auto;
+}
+
+#sheetAssessment, #myTest {
+  padding: 10px 10px 10px 10px;
+  background-color: #fff;
+  width: 100%;
+}
+
+#navigation {
+  position: absolute;
+  top: 120px;
+  width: 25%;
+  right: 0;
+  height: auto;
+}
+
+#question {
+  position: absolute;
+  top: 120px;
+  width: 38%;
+  left: 10px;
+  padding: 10px;
+}
+
+#option {
+  position: absolute;
+  top: 120px;
+  width: 34%;
+  left: 38%;
+  padding: 10px;
+}
+
+#myTest {
+  font-size: 14px;
+}
+
+#splashTest {
+  margin: 50px;
+  padding: 40px;
+}
+
+.btn-close {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  z-index: 9999;
+}
+
+#subject, #panelInstrument {
+  position: fixed;
+  width: 48%;
+  overflow: auto;
+  padding-top: 40px;
+}
+
+#subject {
+  left: 0;
+}
+
+#panelInstrument {
+  right: 0;
+}
+
+#viewSubject {
+  left: 0;
+  margin: auto;
+  height: 580px;
+}
+
+#viewInstrument {
+  right: 0;
+  top: 40px;
+  height: auto;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  z-index: 999;
+}
+
+#message {
+  padding-top: 80px;
+  width: auto;
+  height: auto;
+  color: #000;
+  background-color: #fff;
+  z-index: 9991;
+  margin: auto;
+  text-align: center;
+}
+
+#message-screen {}
+
+#tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(102, 102, 102, 0.34);
+  margin: auto;
+}
+
+.profile-big {
+  width: 200px;
+}
+
+.box-confirm {
+  width: auto;
+}
+
+.selected {
+  background-color: #ccc;
+}
+
+.preview {
+  min-width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.preview ol li {
+  margin-left: 2px;
+}
+
+.minimize {
+  display: '';
+}
+
+#question-text img, #question-text p img, #question-text span img {
+  max-width: 100%;
+}
+
+#list-option p img, #list-option p span img {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+  #timer {
+    font-size: 64px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 900;
+  }
+  #buttonbar {
+    position: absolute;
+    bottom: 0px;
+    width: 80%;
+    left: 10px;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #timer {
+    font-size: 24px;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    z-index: 900;
+  }
+  .form-control {
+    width: 100%;
+  }
+  #panelInstrument {
+    padding-top: 0px;
+  }
+  .profile-big {
+    width: 80px;
+  }
+  #footer {
+    text-align: right;
+    padding-right: 10px;
+    height: 20px;
+  }
+  .footer {
+    bottom: -15px;
+  }
+  .minimize {
+    display: none;
+  }
+  #navigation, #question, #option, #panelInstrument, #subject {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    left: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  #question {
+    margin-top: 40px;
+    z-index: 800;
+  }
+  #option {
+    margin-bottom: 40px;
+    z-index: 800;
+  }
+  #navigation {
+    overflow-x: auto;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 900;
+  }
+  .btn-close {
+    z-index: 9999;
+    text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  #buttonbar {
+    text-align: left;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    background-color: #fff;
+    z-index: 900;
+  }
+  .content {
+    margin-top: 20px;
+  }
+  .logo {
+    position: fixed;
+    bottom: 0px;
+  }
+}
