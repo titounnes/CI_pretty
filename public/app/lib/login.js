@@ -41,7 +41,7 @@ var content = {
       label: 'ID Pengguna',
       name: 'identity',
       type: 'text',
-      regex: /([a-zA-Z0-9]){6,20}/i,
+      regex: /([a-zA-Z0-9]){5,20}/i,
       message: '6-20 karakter'
     },
     {
