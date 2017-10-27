@@ -1,5 +1,13 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
+/*===============================================================
+* CodeIgniter CI_Pretty
+* @package	CI_BaseConfig
+* @author	Harjito
+* @license  http://opensource.org/licenses/BSD-3-Clause 3-clause BSD
+* @copyright	Copyright (c) 2017 - 2018, eProject Technology. (https://e-project-tech.com/)
+===============================================================*/
+
 class MY_Controller extends CI_Controller
 {
     public $_session;
