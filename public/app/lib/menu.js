@@ -7,7 +7,7 @@ var menuList = {
   admin : "Administrator",
 }
 function menuTree(obj, route, deep){
-	var menu = '';
+  var menu = '';
 	if(typeof(obj)=='object'){
 		$.each(obj, function(i, v){
 			if(typeof(v)=='object'){
@@ -35,7 +35,9 @@ function toggleMenu(obj){
 	return parent;
 }
 function showMenu(){
-  switcher = '<select class="swapper-switch form-control">';
+  var infoUser = parseToken(sessionStorage['token'])
+  var roles = infoUser.roles;
+	switcher = '<select class="swapper-switch form-control">';
   var j = 0;
   $.each(roles, function(i, v) {
     if (typeof menuList[v] != 'undefined') {
