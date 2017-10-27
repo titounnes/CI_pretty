@@ -81,11 +81,11 @@ class Jwt
         if ($secret->ip != JWT::getIP()) {
             return false;
         }
-
+/*
         if ($secret->expired < strtotime('+0 hours')) {
             return false;
         }
-
+*/
         if ($secret->user_agen != $_SERVER['HTTP_USER_AGENT']) {
             return false;
         }

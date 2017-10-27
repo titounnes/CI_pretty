@@ -29,6 +29,12 @@ class MY_Controller extends CI_Controller
                 require_once $qry;
                 $this->obj = $obj;
             }
+        }else{
+          $qry = QUERY . $this->uri->segments[1] . '/' . $this->uri->segments[2] . '.php';
+          if (file_exists($qry)) {
+              require_once $qry;
+              $this->obj = $obj;
+          }
         }
 
         if (strtoupper($this->uri->segments[1]) != 'GUEST') {

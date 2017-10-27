@@ -5,6 +5,7 @@ define('QUERY', 'application/query/');
 
 $method = [
   'login',
+  'register',
   'grid',
   'append',
   'saveOne',
@@ -14,63 +15,63 @@ $method = [
 ];
 
 if (php_sapi_name() != "cli") {
-  echo "Maaf. Proses harus dilakukan lewat CLI<br>";
-  echo "Proses hanya bisa dijalankan lewat CLI";
-  return false;
+    echo "Maaf. Proses harus dilakukan lewat CLI<br>";
+    echo "Proses hanya bisa dijalankan lewat CLI";
+    return false;
 }
 
-if(!isset($argv[1])){
-  echo "Gagal..\n";
-  echo "Argumen harus disi harus diisi.\n";
-  echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
-  echo "Contoh: php Build.php operator/grid/user/author users/u\n";
-  return false;
+if (!isset($argv[1])) {
+    echo "Gagal..\n";
+    echo "Argumen harus disi harus diisi.\n";
+    echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
+    echo "Contoh: php Build.php operator/grid/user/author users/u\n";
+    return false;
 }
 
-$par = explode('/',$argv[1]);
-if(count($par)<2){
-  echo "Gagal..\n";
-  echo "Argumen minimal terdiri dari 3 segment: role (wajib), method (wajib) dan path (opsional).\n";
-  echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
-  echo "Contoh: php Build.php operator/grid/user/author users/u\n";
-  return false;
+$par = explode('/', $argv[1]);
+if (count($par)<2) {
+    echo "Gagal..\n";
+    echo "Argumen minimal terdiri dari 3 segment: role (wajib), method (wajib) dan path (opsional).\n";
+    echo "Format argumen [role]/[method]/path_to_sql [namatable/alias]\n";
+    echo "Contoh: php Build.php operator/grid/user/author users/u\n";
+    return false;
 }
 
-if(! in_array($par[1], $method)){
-  echo "Gagal..\n";
-  echo "method [" . $par[1] . "] tidak tersedia.\n";
-  echo "method yang diijinkan adalah: " . implode(',', $method) . ".\n";
-  return false;
+if (! in_array($par[1], $method)) {
+    echo "Gagal..\n";
+    echo "method [" . $par[1] . "] tidak tersedia.\n";
+    echo "method yang diijinkan adalah: " . implode(',', $method) . ".\n";
+    return false;
 }
 
 echo "Sedang memproses....\n";
 
 $controller = CONTROLLER . ucfirst(strtolower($par[0])) . EXT;
 
-if(!file_exists($controller)){
-  $fc = fopen($controller, "w");
-  $txt = "<?php defined('BASEPATH') OR exit('No direct script access allowed');\n";
-  $txt .= "\n";
-  $txt .= "class " . ucfirst(strtolower($par[0])) . " extends MY_Controller{\n";
-  $txt .= "}\n";
-  fwrite($fc, $txt);
-  fclose($fc);
-  echo $controller." telah dibuat.\n";
+if (!file_exists($controller)) {
+    $fc = fopen($controller, "w");
+    $txt = "<?php defined('BASEPATH') OR exit('No direct script access allowed');\n";
+    $txt .= "\n";
+    $txt .= "class " . ucfirst(strtolower($par[0])) . " extends MY_Controller{\n";
+    $txt .= "}\n";
+    fwrite($fc, $txt);
+    fclose($fc);
+    echo $controller." telah dibuat.\n";
 }
 
 $role = QUERY . strtolower($par[0]);
-if(!file_exists($role)){
-  mkdir($role, 0755);
+if (!file_exists($role)) {
+    mkdir($role, 0755);
 }
 
 $path = $role;
-if(count($par)>2){
-  for($i=2;  $i < count($par); $i++){
-    $path .=  '/' . strtolower($par[$i]);
-    if(!file_exists($path)){
-      mkdir($path, 0755);
+if (count($par)>2) {
+    for ($i=2;  $i < count($par); $i++) {
+        $path .=  '/' . strtolower($par[$i]);
+        if (!file_exists($path)) {
+            mkdir($path, 0755);
+        }
     }
-  }
 }
 
 $sql = $path ."/". $par[1] .  EXT;
@@ -105,24 +106,33 @@ $txt .= "\n";
 
 $tableName = '';
 $tableAs = '';
-if(isset($argv[2])){
-  $tbl = explode('/', $argv[2]);
-  $tableName = $tbl[0];
-  $tableAs = $tbl[1] ?? '';
+if (isset($argv[2])) {
+    $tbl = explode('/', $argv[2]);
+    $tableName = $tbl[0];
+    $tableAs = $tbl[1] ?? '';
 }
 $txt .= "\$obj = new stdClass();\n";
 $txt .= "\$obj->table = '".$tableName." ".$tableAs."';\n";
 
-switch ($par[1]){
-  case 'login' :
-    $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs ).".*';\n";
+switch ($par[1]) {
+  case 'login':
+    $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs).".*';\n";
     $txt .="\$obj->join = [\n";
     $txt .= "//\t['','',''],\n";
     $txt .= "];\n";
+    $txt .="\$obj->field = [\n";
+    $txt .= "//\t''=> ''\n";
+    $txt .="];\n";
     $txt .="\$obj->key = 'identity';\n";
     break;
-  case 'grid' :
-    $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs ).".*';\n";
+  case 'register':
+    $txt .="\$obj->field = [\n";
+    $txt .= "//\t''=> ''\n";
+    $txt .="];\n";
+    $txt .="\$obj->fk = 'group_id';\n";
+    break;
+  case 'grid':
+    $txt .= "\$obj->select = '".($tableAs == '' ? $tableName : $tableAs).".*';\n";
     $txt .="\$obj->join = [\n";
     $txt .= "//\t['','',''],\n";
     $txt .="];\n";
@@ -136,19 +146,19 @@ switch ($par[1]){
     $txt .= "\t\n";
     $txt .= "];\n";
     break;
-  case 'saveOne' :
+  case 'saveOne':
     $txt .="\$obj->field = [\n";
     $txt .="\t\n";
     $txt .="];\n";
     $txt .="\$obj->key = 'id';\n";
     break;
-  case 'remove' :
+  case 'remove':
     $txt .="\$obj->key = 'id';\n";
     $txt .= "\$obj->session = [\n";
     $txt .= "\t\n";
     $txt .= "];\n";
     break;
-  case 'append' :
+  case 'append':
     $txt .="\$obj->field = [\n";
     $txt .="\t\n";
     $txt .="];\n";
@@ -156,7 +166,7 @@ switch ($par[1]){
     $txt .= "\t\n";
     $txt .= "];\n";
     break;
-  case 'pivot' :
+  case 'pivot':
 /*  'columns' => [
       'table' => 'quizs q',
       'select' => 'q.id, c.competence, q.indicator, q.answer',
@@ -208,4 +218,3 @@ fclose($fs);
 echo "Proses build modul ", $argv[1]. "Berhasil dibuat.\n";
 echo "Untuk mengakses: http://example.com/".$argv[1].".\n";
 echo "Untuk pengujian: http://example.com/debug/".$argv[1].".\n";
-?>

@@ -6,19 +6,20 @@ class Login
     {
         $this->CI =& get_instance();
         $this->CI->load->database();
-        $this->CI->load->helper(['file']);
+        $this->CI->password = '';
     }
 
     private function build(){
-      $setting = json_decode(read_file(SETTING));
-      $where[$this->CI->obj->key] = '';
+      $where = [];
 
       if(isset($this->CI->obj->field))
       {
         foreach ($this->CI->obj->field as $k=>$f) {
             $field[$k] = $this->CI->security->xss_clean($this->CI->input->post($f));
+            if($k=='password'){
+              $this->CI->password = $this->CI->input->post($f);
+            }
         }
-
         if (filter_var($field['identity'], FILTER_VALIDATE_EMAIL)) {
             $where['email'] = $field['identity'];
             $identity = 'email';
@@ -27,7 +28,6 @@ class Login
             $identity = 'username';
         }
       }
-
 
       $this->CI->db
           ->select($this->CI->obj->select)
@@ -47,32 +47,31 @@ class Login
         return $this->build()
           ->get_compiled_select();
     }
+
+    public function test()
+    {
+      $this->CI->db->db_debug = FALSE;
+      $res = $this->build()->get();
+      return $this->CI->db;
+    }
+
     public function render()
     {
-        $data = $this->build()->get();
+        $data = $this->build()->get()->row();
 
 				if ($data==null || $data->id==null) {
             $this->CI->response->success(['status'=>'unregister']);
             return false;
         }
-
-        if (password_verify($field['password'], $data->password)) {
+        if(password_verify($this->CI->password, $data->password)) {
             $user = [
                 'user_id' => $data->id,
                 'roles' => array_unique(explode('|', $data->roles)),
-                'jobs' => array_unique(explode('|', $data->jobs)),
-                'leader' => $data->leader,
-                'parentClassroom' => $data->parentClassroom,
-                'identityValue' => $field['identity'],
-                'identity' => $identity,
-                'year' => $setting->year,
-                'semester' => $setting->semester,
                 'login' => true,
             ];
-
-						$this->CI->response->success(['status'=>'login'], $user);
+            $this->CI->response->success(['status'=>'login'], $user);
             return false;
-        }
+          }
 
         $this->CI->response->success(['status'=>'pass_mismatch']);
     }

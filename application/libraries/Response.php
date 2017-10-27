@@ -20,14 +20,9 @@ class Response
         $this->view();
     }
 
-    private function view($output = [], $jwt = false)
+    private function view($output = [], $token = false)
     {
-        if($jwt==false){
-            $output['jwt'] = false;
-        }else{
-            $output['jwt'] = $this->CI->jwt->encode($jwt);
-        }
-        //$output['test'] = $jwt;
+        $output['token'] = $token ? $this->CI->jwt->encode($token) : $token;
         $this->CI->output
             ->set_header('HTTP/1.1 200 OK')
             ->set_header('Cache-Control: no-store, no-cache, must-revalidate')

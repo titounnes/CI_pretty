@@ -27,7 +27,7 @@ class Debuger
             } else{
               echo $this->CI->login->debug();
             echo '<h2>Query Result</h2>';
-            //echo json_encode($this->CI->database->getRow());
+            echo json_encode($this->CI->login->test());
           }
           break;
           case 'grid' :
