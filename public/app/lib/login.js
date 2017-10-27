@@ -1,3 +1,4 @@
+/*@eProject Technology, author: Harjito*/
 function showLogin() {
   var html = '<div class="modal-content">' +
     '<div class="modal-header">' +

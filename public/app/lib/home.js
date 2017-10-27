@@ -1,3 +1,4 @@
+/*@eProject Technology, author: Harjito*/
 function showHome(){
 	var html = '<div class="jumbotron jumbotron-fluid" id="home-icon"><div class="container">';
 	$.each(content.title, function(i, v){
@@ -41,8 +42,8 @@ var logout = function(){
 }
 var content = {
 	title : [
-		'Contoh Aplikasi Dengan Template Ganda',
-	 	'Dikembangkan oleh Harjito',
+		'Apikasi Web Service - Frontend',
+	 	'eProject Technology',
 	],
 	footer : [
 		'website ',

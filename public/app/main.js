@@ -1,3 +1,4 @@
+/*@eProject Technology, author: Harjito*/
 if (typeof sessionStorage['token'] == 'undefined') {
   sessionStorage['token'] = localStorage['token'];
 }

@@ -1,3 +1,4 @@
+/*@eProject Technology, author: Harjito*/
 function showSignup() {
   var html = '<div class="modal-content">' +
     '<div class="modal-header">' +

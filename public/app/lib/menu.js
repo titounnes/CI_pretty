@@ -1,3 +1,4 @@
+/*@eProject Technology, author: Harjito*/
 var menus = [];
 var menuList = {
   teacher: "Guru",
