@@ -32,7 +32,7 @@ var website = function(){
 }
 var submission = function(){
 	console.log('test')
-	
+
 }
 var logout = function(){
 	localStorage['token'] = '';
@@ -41,8 +41,8 @@ var logout = function(){
 }
 var content = {
 	title : [
-		'Badan Pelayanan Perijinan dan Penaanaman Modal',
-	 	'Kabupaten Demak',
+		'Contoh Aplikasi Dengan Template Ganda',
+	 	'Dikembangkan oleh Harjito',
 	],
 	footer : [
 		'website ',
