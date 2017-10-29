@@ -1,0 +1,2 @@
+var viewItem = {title:"Unjuk Kerja: Sudah Selesai",target:"student/grid/",head:["Judul Unjuk Kerja","Jadwal","Penilaian"],grid:{span:[[{label:"Mata Pelajaran",data:"course"},{label:'Pengampu',data:"teacher"}],[{label:"Mulai",data:"start"},{label:"Selesai",data:"finish"}],[{label:"Skor Penilaian Diri",data:"mean_score"},{label:"Banyak Item Yang Dinilai",data:"num_score"},{label:"Banyak Instrumen",data:"instrument"}]]},action:[{target:"student/read/",icon:"fa fa-eye",type:"btn-read",label:"Deskripsi Unjuk Kerja"}]}
+var viewType = {performance_finish:true}

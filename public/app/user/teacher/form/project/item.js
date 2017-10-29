@@ -1,0 +1,2 @@
+var formItem = {title:"Form Item Penilaian Proyek",button:{save:{target:"teacher/save/",icon:"fa fa-floppy-o",class:"btn btn-info btn-save",value:"",type:"btn-save-one"}},field:{aspect:{field:"aspect",type:"text",label:"Aspek Penilaian",validation:"required",err:"Wajib diisi",data:""}}}
+var formType = {teacher:{project_item:true}}

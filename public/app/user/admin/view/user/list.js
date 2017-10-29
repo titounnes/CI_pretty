@@ -1,0 +1,1 @@
+var viewItem = {title:"Managemen Pengguna",target:"admin/grid/",button:{save:{target:"admin/submit/",icon:"fa fa-floppy-o",label:"Simpan"}},head:["ID Pengguna","Nama","Email","Password"],grid:{username:{type:"text"},original_name:{type:"text"},email:{type:"email"},password:{type:"password"}}}

@@ -1,0 +1,2 @@
+var viewItem = {title:"Anggota Kelompok",target:"teacher/grid/",head:["NISN","Nama","Kelompok"],button:{save:{target:"teacher/submit/",icon:"fa fa-floppy-o",label:"Simpan"}},dropdown:{primary:[{name:"classroom_id-room_id-course_id",target:"teacher/dropdown/dropdown_classroomRoomCourse",label:"Pilih Mata Pelajaran"}]},grid:{username:{type:"cell"},original_name:{type:"cell"},team:{type:"select",option:{target:"teacher/dropdown/dropdown_groupMember"},label:"label_team"}}}
+var viewType = {group_member:true}

@@ -6,7 +6,17 @@ footer {
   background-color: #f2f2f2;
   padding: 25px;
 }
-
+.btn{
+  /*margin: 5px 5px 5px 5px;
+  border-right: 3px solid #2C0B0B;
+  border-bottom: 3px solid #2C0B0B;
+  border-top: 3px solid #d2d6de;
+  border-left: 3px solid #d2d6de;*/
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 #home .carousel-inner img {
   width: 100%; /* Set width to 100% */
   margin: auto;
@@ -168,14 +178,6 @@ tbody tr td {
 
 #text-body img, #text-body p img, #text-body span img, #text-body p span img {
   max-width: 780px;
-}
-
-.btn {
-  margin: 5px 5px 5px 5px;
-  border-right: 1px solid #2C0B0B;
-  border-bottom: 1px solid #2C0B0B;
-  border-top: 1px solid #d2d6de;
-  border-left: 1px solid #d2d6de;
 }
 
 .main-sidebar {

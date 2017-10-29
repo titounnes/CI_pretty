@@ -1,0 +1,2 @@
+var viewItem = {title:"Paket Pelajaran",target:"operator/grid/",dropdown:{primary:[{name:"classroom_id",target:"operator/dropdown/dropdown_classroom",label:"Pilih Kelas"}],secondary:{name:"course_id",target:"operator/dropdown/dropdown_courseAvailable",label:"Pelajaran"}},head:["Pelajaran","Kategori","Urutan"],grid:{title:{type:"cell"},category:{type:"cell"},orde:{type:"cell"}}}
+var viewType = {student:true}

@@ -1,0 +1,2 @@
+var viewItem = {title:"Tes: Belum Mulai",target:"student/grid/",head:["Judul Unjuk Kerja","Jadwal","Pelaksanaan"],grid:{span:[[{label:"Mata Pelajaran",data:"course"},{label:'Pengampu',data:"teacher"}],[{label:"Mulai",data:"start"},{label:"Selesai",data:"finish"}],[{label:"Banyak Instrumen",data:"instrument"}]]}}
+var viewType = {quiz_next:true}

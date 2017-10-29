@@ -1,0 +1,2 @@
+var viewItem = {title:"Proyek: Belum Mulai",target:"student/grid/",head:["Judul Proyek","Jadwal"],grid:{span:[[{label:"Mata Pelajaran",data:"course"},{label:'Pengampu',data:"teacher"}],[{label:"Mulai",data:"submission"},{label:"Penialian Teman",data:"peer"},{label:"Perbaikan",data:"revision"},{label:"Selesai",data:"finish"}]],instrument:{type:"list"}},action:[{target:"student/read/",icon:"fa fa-eye",type:"btn-read",label:"Deskripsi Proyek"}]}
+var viewType = {project_next:true}

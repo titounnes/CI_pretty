@@ -1,0 +1,2 @@
+var viewItem = {title:"Daftar Tugas Mengajar dan Tugas Tambahan",target:"operator/grid/",head:["NIP/NIGD","Nama","L/P","Tugas Mengajar","Tugas Tambahan"],dropdown:{primary:[{name:"year_id-semester_id",target:"operator/dropdown/dropdown_lectureYearSemester",label:"Pilih Periode"}]},grid:{username:{type:"cell"},original_name:{type:"cell"},gender:{type:"cell"},lecturer:{type:"list"},job:{type:"cell"}}}
+var viewType = {teacher_job:true}

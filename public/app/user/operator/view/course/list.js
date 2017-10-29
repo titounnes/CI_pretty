@@ -1,0 +1,2 @@
+var viewItem = {title:"Daftar Pelajaran",target:"operator/grid/",dropdown:{primary:[{name:"category",option:{"0":"Pilih Kategori","1":"Umum (A)","2":"Umum (B)","3":"Peminatan (C)"}}]},button:{addnew:{target:"operator/form/",icon:"fa fa-file-o",label:"Buat Baru"},save:{target:"operator/submit/",icon:"fa fa-floppy-o",label:"Simpan"}},head:["Pelajaran","Singkatan","Urutan","Paket"],grid:{title:{type:"text"},code:{type:"text"},orde:{type:"number",align:"right"},classroom:{type:"list"}}}
+var viewType = {student:true}

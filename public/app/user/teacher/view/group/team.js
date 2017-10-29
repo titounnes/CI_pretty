@@ -1,0 +1,2 @@
+var viewItem = {title:"Daftar Kelompok",target:"teacher/grid/",head:["Aksi","Kelompok"],dropdown:{primary:[{name:"classroom_id-room_id-course_id",target:"teacher/dropdown/dropdown_classroomRoomCourse",label:"Pilih Mata Pelajaran"}],secondary:{name:"team",target:"teacher/dropdown/dropdown_groupAvailable",label:"Pilih Kelompok"}},grid:{label:{type:"cell"}},action:[{target:"teacher/remove/",icon:"fa fa-trash",type:"btn-delete",label:"Hapus"}]}
+var viewType = {group_team:true}

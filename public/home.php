@@ -54,7 +54,6 @@ define('ASSETS', '/var/app/ijin/public/assets/');
             <div  class="content-wrapper">
           <div id="workspace" class="content">
           </div>
-          <div id="popup" class="row" style="display:none"></div>
           </div>
             <footer class="footer main-footer text-right" style="background-color:rgba(238, 238, 238, 0.58);height:0px;padding:0 0 0 0;"></footer>
             <div id="footer" class="text-center"><b><a href="#" data-toggle="modal" data-target="#myModal" id="logo">e-Project</a><span class="minimize"> Version</span></b><span class="minimize"> 1.0<strong>Copyright © 2014-2016 .</strong> All rights reserved.</span></div>

@@ -1,0 +1,2 @@
+var viewItem = {title:"Bahan Ajar",target:"teacher/grid/",head:["Pokok Bahasan / Sub Pokok Bahasan"],dropdown:{primary:[{name:"classroom_id-course_id",target:"teacher/dropdown/dropdown_classroomCourse",label:"Pilih Mata Pelajaran"}]},grid:{topic:{type:"cell"}},action:[{target:"teacher/read/",icon:"fa fa-edit",type:"btn-edit",label:"Perbaiki"},{target:"teacher/read/",icon:"fa fa-eye",type:"btn-read",label:"Baca"}]}
+var viewType = {lesson:true}

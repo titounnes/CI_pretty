@@ -1,0 +1,2 @@
+var viewItem = {title:"Guru Pengampu Pelajaran",target:"operator/grid/",dropdown:{primary:[{name:"classroom_id-room_id",target:"operator/dropdown/dropdown_room",label:"Pilih Rombel"}]},button:{save:{target:"operator/submit/",icon:"fa fa-floppy-o",label:"Simpan"}},head:["Pelajaran","Guru Pengampu"],grid:{course:{type:"cell"},teacher_id:{type:"select",option:{target:"operator/dropdown/dropdown_teacher"}}}}
+var viewType = {student:true}

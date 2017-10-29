@@ -1,0 +1,2 @@
+var viewItem = {title:"Preview Unjuk Kerja",target:"teacher/grid/",head:["Aktivitas","Instrumen"],dropdown:{primary:[{name:"classroom_id-course_id",target:"teacher/dropdown/dropdown_classroomCourse",label:"Pilih Unjuk Kerja"}]},grid:{span:[[{label:"Judul Unjuk Kerja",data:"title"},{label:"Mulai",data:"start"},{label:"Selesai",data:"finish"}],[{data:"instrument"}]]}}
+var viewType = {performance_preview:true}

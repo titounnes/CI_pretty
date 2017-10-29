@@ -1,8 +1,8 @@
 /*@eProject Technology, author: Harjito*/
-function callFunc(param){
+/*function callFunc(param){
   var myFunc = new Function("return "+param)
   myFunc();
-}
+}*/
 if (typeof sessionStorage['token'] == 'undefined') {
   sessionStorage['token'] = localStorage['token'];
 }
@@ -48,6 +48,14 @@ function debugUrl(url){
 function ucfirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+function toSnake(string){
+  var strs = string.split('_');
+  var out = '';
+  $.each(strs, function(i, v){
+    out += ucfirst(v);
+  })
+  return out;
+}
 function ajaxRequest(callback, url){
   var d = new Date();
   $.ajax({
@@ -70,6 +78,9 @@ function sendRequest(callback, method, data) {
     showAlert('','Tidak ada data yang diubah');
     return false;
   }
+  if(action){
+    return false;
+  }
   $.ajax({
     url: domain + method,
     method: 'POST',
@@ -79,7 +90,7 @@ function sendRequest(callback, method, data) {
     },
     success: callback,
     complete: function(response) {
-      saveProcess = false;
+      action = false;
     },
     error: function() {
       showAlert('danger', 'Ups.. Ada makalah. Periksa kembali koneksi internet anda... ');
@@ -115,8 +126,27 @@ function adminPanel(){
 }
 $(document).on('click', '.btn, .link', function(e){
   e.preventDefault();
-  var callFunc = new Function("return "+$(this).attr('target')+"()")
-  callFunc();
+  if(typeof $(this).attr('target')=='undefined'){
+    return false;
+  }
+  var callFunc = new Function($(this).attr('target')+"()")
+  return callFunc();
+})
+$(document).on('keyup','.form-control', function(){
+  $('#'+$(this).prop('name')+'Message').html('')
+})
+$(document).keyup(function(e) {
+  switch (e.which) {
+    case 27:
+      $('#myModal').modal('hide');
+      break;
+    case 113:
+      if($('#dialog-body').html()==''){
+        return false;
+      }
+      $('#myModal').modal('show');
+      break;
+  }
 })
 function calllogout() {
   localStorage['token'] = '';
@@ -124,8 +154,9 @@ function calllogout() {
   clientPanel();
 }
 function showAlert(type, message) {
-  $('.alert').addClass(type).html(message).show(FF)
+  $('.alert').addClass(type).html(message).show(message)
   setTimeout(function() {
     $('.alert').fadeOut()
   }, 3000)
 }
+var action =false;

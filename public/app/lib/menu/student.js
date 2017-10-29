@@ -1,0 +1,3 @@
+var menuItem = {"lesson":"Sumber Belajar","Proyek":{"project_next":"Belum Mulai","project_submission":"Proses Submisi","project_peer":"Proses Penilaian Teman","project_revision":"Proses Revisi","project_prev":"Telah Selesai"},"Unjuk Kerja":{"performance_next":"Belum Mulai","performance_start":"Penilaian Diri","performance_peer":"Penilaian Teman","performance_finish":"Sudah selesai"},"Tes Pengetahuan":{"quiz_next":"Belum Mulai","quiz_start":"Sedang Berlangsung","quiz_finish":"Sudah selesai"},"Laporan":{"report_cognitive":"Test","report_project":"Proyek","report_performance":"Unjuk Kerja"}};
+user = 'student';
+menus[user] = menuItem;

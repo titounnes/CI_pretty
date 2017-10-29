@@ -1,0 +1,2 @@
+var viewItem = {title:"Pasangan Penilaian",target:"teacher/grid/",head:["Kelompok Subjek","Kelompok Penilai"],button:{save:{target:"teacher/submit/",icon:"fa fa-floppy-o",label:"Simpan"}},dropdown:{primary:[{name:"classroom_id-room_id-course_id",target:"teacher/dropdown/dropdown_classroomRoomCourse",label:"Pilih Mata Pelajaran"}]},grid:{subject:{type:"cell"},assessor:{type:"select",option:{target:"teacher/dropdown/dropdown_groupAssessor"},label:"label_assessor"}}}
+var viewType = {group_pair:true}

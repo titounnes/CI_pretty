@@ -1,0 +1,2 @@
+var viewItem = {title:"Laporan Unjuk Kerja",target:"teacher/grid/",head:["NISN","Nama","Penilaian Diri","Penilaian Teman","Penilaian Guru"],dropdown:{primary:[{name:"performance_id-course_id-classroom_id-room_id",target:"teacher/dropdown/dropdown_performanceCourseClassroomRoom",label:"Pilih Unjuk Kerja"}]},grid:{username:{type:"cell"},original_name:{type:"cell"},self:{type:"cell",align:"right"},peer:{type:"cell",align:"right"},mean_score:{type:"cell",align:"right"}}}
+var viewType = {performance_report:true}

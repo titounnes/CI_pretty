@@ -1,0 +1,2 @@
+var viewItem = {title:"Daftar Siswa",target:"operator/grid/",dropdown:{primary:[{name:"room_id",target:"operator/dropdown/dropdown_learnerRoom",label:"Rombel"}]},button:{save:{target:"operator/submit/",icon:"fa fa-floppy-o",label:"Simpan"},import:{target:"operator/form/",icon:"fa fa-file-o",label:"Input masal"}},head:["NIS/NISN","Nama","L/P"],grid:{user_id:{type:"text"},original_name:{type:"text"},gender:{type:"select",option:{source:["Gender","Laki-laki","Perempuan"]}}}}
+var viewType = {student:true}

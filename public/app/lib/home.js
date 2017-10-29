@@ -35,7 +35,7 @@ function showHome(){
 			})
 			html += '</ul>'+
       '<ul class="nav navbar-nav navbar-right">'+
-        '<li><a href="#" class="link" target="'+(sessionStorage['token']=='' ? 'callLogin' : 'callLogout')+'"><span class="fa fa-sign-'+(sessionStorage['token']=='' ? 'in' : 'out')+'"></span> '+(sessionStorage['token']=='' ? 'Login' : 'Logout')+'</a></li>'+
+        '<li><a href="#" class="link" target="'+(sessionStorage['token']=='' ? 'callLogin' : 'callLogout')+'" data-toggle="modal" data-target="#myModal" ><span class="fa fa-sign-'+(sessionStorage['token']=='' ? 'in' : 'out')+'"></span> '+(sessionStorage['token']=='' ? 'Login' : 'Logout')+'</a></li>'+
 	      '</ul>'+
 	    '</div>'+
 	  '</div>'+
@@ -67,26 +67,29 @@ function showHome(){
       '</a>'+
   '</div>'+
   '<div class="container text-center">'+
-    '<h1>'+dataHome.title[0]+'</h1>'+
+    //'<h1>'+dataHome.title[0]+'</h1>'+
     '<h2>'+dataHome.title[1]+'</h2>'+
     '<div class="row">'
+      var j =0;
       $.each(dataHome.menu, function(i, v){
         if(sessionStorage['token']!=''){
           if(v.target!='callLogin'){
       			var btn = v.target == 'callLogout' ? 'danger' : 'info';
-    				html += '<div class="col-sm-4">'+
-              '<a href="#" class="btn btn-'+btn+'" style="width:100%" target="'+v.target+'"><h1><span class="fa fa-'+v.icon+' fa-2x faa-horizontal animated"></span></h1>'+
+    				html += '<div class="col-sm-4" style="margin-bottom:10px">'+
+              '<a href="#" class="btn btn-'+btn+'" data-toggle="modal" data-target="#myModal" style="width:100%" target="'+v.target+'"><h1><span class="fa fa-'+v.icon+' fa-2x faa-horizontal animated"></span></h1>'+
               '<p>'+v.label+'</p></a>'+
               '</div>'
+              j++;
             }
           } else {
             if(v.target!='callSubmission' && v.target !='callLogout'){
         			var btn = v.target == 'callLogin' ? 'success' : 'info';
       				html += '<div class="col-sm-4">'+
-                '<a href="#" class="btn btn-'+btn+'" style="width:100%" target="'+v.target+'"><h1><span class="fa fa-'+v.icon+' fa-2x faa-horizontal animated"></span></h1>'+
+                '<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-'+btn+'" style="width:100%" target="'+v.target+'"><h1><span class="fa fa-'+v.icon+' fa-2x faa-horizontal animated"></span></h1>'+
                 '<p>'+v.label+'</p></a>'+
                 '</div>'
               }
+              j++;
           }
       })
       html += '</div>'+
@@ -98,22 +101,39 @@ function showHome(){
 	html +=	'</div></div></div>';
 	$('#home').html(html)
 }
-var info = function(){
-	console.log('a')
+var callInfo = function(){
+  $('#dialog-body').html('')
+	getLib('showInfo','info');
 }
 var callLogin = function(){
-	$('#myModal').modal('show');
+  $('#dialog-body').html('')
 	getLib('showLogin','login');
 }
-var callWebsite = function(){
-	console.log('a')
+var callHelp = function(){
+  $('#dialog-body').html('')
+	getLib('showHelp','help');
 }
 var callSubmission = function(){
-	console.log('test')
-
+  $('#dialog-body').html('')
+	getLib('showSubmission','submission');
 }
 var callLogout = function(){
-	localStorage['token'] = '';
+  var html = '<div class="modal-content">'+
+    '<div class="modal-header">'+
+    '<span class="fa fa-exclamation"></span> Konfirmasi'+
+    '</div>'+
+    '<div class="modal-body">'+
+    '<div class="text-center"><h3>Yakin akan keluar?</h3></div>'+
+    '</div>'+
+    '<div class="modal-footer">'+
+    '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>'+
+    '<a class="btn btn-danger" data-dismiss="modal" target="confirmLogout">Logout</a>'+
+    '</div>'+
+    '</div>'
+  $('#dialog-body').html(html)
+}
+var confirmLogout = function(){
+  localStorage['token'] = '';
   sessionStorage['token'] = '';
   showHome();
 }
@@ -143,11 +163,11 @@ var dataHome = {
 			target: 'callInfo',
 		},
 		{
-			icon: 'question',
+			icon: 'lightbulb-o',
 			label: 'Bantuan',
 			target: 'callHelp'
 		},
-		{
+  	{
 			icon : 'sign-out',
 			label: 'Keluar',
 			target : 'callLogout'

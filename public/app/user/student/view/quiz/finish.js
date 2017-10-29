@@ -1,0 +1,2 @@
+var viewItem = {title:"Tes: Sudah Selesai",target:"student/grid/",head:["Judul Unjuk Kerja","Jadwal","Pelaksanaan"],grid:{span:[[{label:"Mata Pelajaran",data:"course"},{label:'Pengampu',data:"teacher"}],[{label:"Mulai",data:"start"},{label:"Selesai",data:"finish"}],[{label:"Sudah Dijawab",data:"answered"},{label:"Belum Dijawab",data:"unanswered"},{label:"Banyak Instrumen",data:"instrument"}]]}}
+var viewType = {quiz_start:true}
