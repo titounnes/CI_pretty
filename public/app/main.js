@@ -1,22 +1,22 @@
 /*@eProject Technology, author: Harjito*/
+function callFunc(param){
+  var myFunc = new Function("return "+param)
+  myFunc();
+}
 if (typeof sessionStorage['token'] == 'undefined') {
   sessionStorage['token'] = localStorage['token'];
 }
-/*inisilisasi*/
 function baseUrl(param) {
   if (param.indexOf('.js') > -1) {
     return '/app/' + param;
   }
   return '/app/' + param + '.js';
 }
-function getMenu(method){
-  return 'app/menu/'+method+ '.js';
-}
-function getForm(user,path){
-  return 'app/user/'+user+'/form/'+path.replace(/_/,'/')+'.js';
-}
-function getView(user,path){
-  return 'app/user/'+user+'/view/'+path.replace(/_/,'/')+'.js';
+function setSession(response) {
+  sessionStorage['token'] = response.token;
+  if(response.status=='login'){
+    localStorage['token'] = response.token;
+  }
 }
 function getSession() {
   if (typeof sessionStorage['token'] == 'undefined' || sessionStorage['token'] == false) {
@@ -27,22 +27,26 @@ function getSession() {
   }
   return localStorage['token']
 }
-function debugUrl(url){
-  console.log(domain+url+'/?token='+getSession())
+function getJSON(callback, method) {
+  ajaxRequest(callback, method)
 }
-function ucfirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function getLib(callback, method, prm) {
+  paramUrl = typeof prm != 'undefined' ? prm : '';
+  ajaxRequest(callback, '/app/lib/'+method+'.js');
 }
-function setSession(response) {
-  sessionStorage['token'] = response.token;
-  if(response.status=='login'){
-    localStorage['token'] = response.token;
-  }
+function getView(user,path){
+  return 'app/user/'+user+'/view/'+path.replace(/_/,'/')+'.js';
 }
 function parseToken(token){
   var payload = token.split('.')[1];
   var payload = payload.replace(/-/,'+').replace(/_/,'/');
   return JSON.parse(window.atob(payload));
+}
+function debugUrl(url){
+  console.log(domain+url+'/?token='+getSession())
+}
+function ucfirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 function ajaxRequest(callback, url){
   var d = new Date();
@@ -59,13 +63,6 @@ function ajaxRequest(callback, url){
       }
     },
   });
-}
-function getJSON(callback, method) {
-  ajaxRequest(callback, method)
-}
-function getLib(callback, method, prm) {
-  paramUrl = typeof prm != 'undefined' ? prm : '';
-  ajaxRequest(callback, '/app/lib/'+method+'.js');
 }
 function sendRequest(callback, method, data) {
   data = typeof data == 'undefined' ? '' : data;
@@ -116,12 +113,12 @@ function adminPanel(){
   getLib('showMenu', 'menu');
   getJSON('greetingView',getView('home','greeting'));
 }
-$(document).on('click', '.btn', function(e){
-  e.preventDefault()
-  var myFunc = new Function("return "+$(this).attr('target')+"()")
-	myFunc();
+$(document).on('click', '.btn, .link', function(e){
+  e.preventDefault();
+  var callFunc = new Function("return "+$(this).attr('target')+"()")
+  callFunc();
 })
-function logingOut(message) {
+function calllogout() {
   localStorage['token'] = '';
   sessionStorage['token'] = '';
   clientPanel();

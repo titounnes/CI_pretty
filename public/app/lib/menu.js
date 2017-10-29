@@ -7,6 +7,9 @@ var menuList = {
   parentClassroom: "Wali Kelas",
   admin : "Administrator",
 }
+function getMenu(method){
+  return 'app/menu/'+method+ '.js';
+}
 function menuTree(obj, route, deep){
   var menu = '';
 	if(typeof(obj)=='object'){
@@ -52,7 +55,7 @@ function showMenu(){
   if (j > 1) {
     $('#switch').html(switcher);
   }
-  $('#menubar').load('app/user/home/view/userInfo.html');
+  $('#menubar').load('app/user/home/view/userInfo.html?a=1');
   $.each(roles, function(i, v) {
     if (v != '') {
       getJSON('nodeMenu',getMenu(v));
