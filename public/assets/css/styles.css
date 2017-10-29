@@ -18,6 +18,9 @@ footer {
   #home .carousel-caption {
     display: none;
   }
+  .container h1{
+    display: none;
+  }
 }
 
 #home-icon{
