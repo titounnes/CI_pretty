@@ -15,6 +15,7 @@ class MY_Controller extends CI_Controller
     public $obj;
     public $validPost =true;
     public $post = [];
+    public $validate = [];
 
     public function __construct()
     {
@@ -52,8 +53,9 @@ class MY_Controller extends CI_Controller
           foreach ($this->obj->field as $key => $value) {
             $this->form_validation->set_rules($key,$key,$value);
           }
-          $this->post['status'] = $this->form_validation->run();
-          $this->post['message'] = validation_errors();
+          $this->validate['status'] = $this->form_validation->run();
+          $this->validate['message'] = validation_errors();
+
         }
         if (strtoupper($this->uri->segments[1]) != 'GUEST') {
             if (isset($_SERVER['HTTP_BEARER'])) {
@@ -95,8 +97,8 @@ class MY_Controller extends CI_Controller
 
     public function execute()
     {
-      if($this->post['status'] == false){
-        $this->response->success(['validation'=>$this->post]);
+      if($this->validate['status'] == false){
+        $this->response->success(['validation'=>$this->validate]);
         return false;
       }
       $this->lib->render();

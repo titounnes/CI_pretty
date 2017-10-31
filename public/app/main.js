@@ -128,6 +128,11 @@ function adminPanel(){
 }
 $(document).on('click', '.btn, .link', function(e){
   e.preventDefault();
+  if($(this).attr('disabled')){
+    return true;
+  }
+  triger = $(this);
+  triger.attr('disabled',true);
   if(typeof $(this).attr('target')=='undefined'){
     return false;
   }
@@ -161,4 +166,5 @@ function showAlert(type, message) {
     $('.alert').fadeOut()
   }, 3000)
 }
-var action =false;
+var triger;
+var action = false;

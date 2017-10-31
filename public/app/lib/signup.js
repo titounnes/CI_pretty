@@ -43,7 +43,7 @@ var contentSignup = {
       label: 'ID Pengguna',
       name: 'username',
       type: 'text',
-      regex: /([a-zA-Z0-9]){5,20}/i,
+      regex: /([a-zA-Z0-9_.]){6,50}/i,
       message: '6-20 karakter'
     },
     {
@@ -51,6 +51,8 @@ var contentSignup = {
       label: 'Kata Sandi',
       name: 'password',
       type: 'password',
+      regex: /([a-zA-Z0-9._@]){6,20}/i,
+      message: 'Harus diisi 6-20 karakter '
     },
   ]
 }
@@ -63,17 +65,21 @@ function submitSignup(){
       {
         $('#'+v.name+'Message').html('Harus diisi dengan format '+ v.message);
         valid = false;
+        triger.attr('disabled',false)
         return false;
       }
   }
   })
   if(valid){
-    valid = false;
-    console.log($('#form-login').serialize())
     sendRequest(responseLogin, 'guest/register', $('#form-login').serialize());
   }
 }
 function responseLogin(response){
+  triger.attr('disabled',false)
+  if(typeof response.validation != 'undefined'){
+    showAlert('alert-danger', response.validation.message)
+    return false;
+  }
   if(response.status=='registered'){
       localStorage['token'] = sessionStorage['token'] = response.token;
       $('#dialog-body').html('');

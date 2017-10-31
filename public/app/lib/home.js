@@ -102,22 +102,27 @@ function showHome(){
 	$('#home').html(html)
 }
 var callInfo = function(){
+  triger.attr('disabled',false)
   $('#dialog-body').html('')
 	getLib('showInfo','info');
 }
 var callLogin = function(){
+  triger.attr('disabled',false)
   $('#dialog-body').html('')
 	getLib('showLogin','login');
 }
 var callHelp = function(){
+  triger.attr('disabled',false)
   $('#dialog-body').html('')
 	getLib('showHelp','help');
 }
 var callSubmission = function(){
+  triger.attr('disabled',false)
   $('#dialog-body').html('')
 	getLib('showSubmission','submission');
 }
 var callLogout = function(){
+  triger.attr('disabled',false)
   var html = '<div class="modal-content">'+
     '<div class="modal-header">'+
     '<span class="fa fa-exclamation"></span> Konfirmasi'+
@@ -133,6 +138,7 @@ var callLogout = function(){
   $('#dialog-body').html(html)
 }
 var confirmLogout = function(){
+  triger.attr('disabled',false)
   localStorage['token'] = '';
   sessionStorage['token'] = '';
   showHome();

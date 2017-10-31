@@ -10,8 +10,8 @@
 $obj = new stdClass();
 $obj->table = 'users';
 $obj->field = [
-  'password' => 'password',
-  'username' => '[a-zA-Z0-9]{6,20}|',
+  'username' => 'required|regex_match[/[A-Za-z0-9\.\_\@]/]|min_length[6]|max_length[50]|is_unique[users.username]',
+  'password' => 'required|min_length[6]|max_length[20]',
 ];
 $obj->relation = 'users_groups';
 $obj->pk = 'user_id';

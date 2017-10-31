@@ -16,9 +16,9 @@ class Login
       if(isset($this->CI->obj->field))
       {
         foreach ($this->CI->obj->field as $k=>$f) {
-            $field[$k] = $this->CI->security->xss_clean($this->CI->input->post($f));
+            $field[$k] = $this->CI->security->xss_clean($this->CI->input->post($k));
             if($k=='password'){
-              $this->CI->password = $this->CI->input->post($f);
+              $this->CI->password = $this->CI->input->post($k);
             }
         }
         if (filter_var($field['identity'], FILTER_VALIDATE_EMAIL)) {
@@ -64,6 +64,7 @@ class Login
             $this->CI->response->success(['status'=>'unregister']);
             return false;
         }
+
         if(password_verify($this->CI->password, $data->password)) {
             $user = [
                 'user_id' => $data->id,

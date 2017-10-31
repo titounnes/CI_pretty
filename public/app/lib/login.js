@@ -65,6 +65,7 @@ function submitLogin(){
       {
         $('#'+v.name+'Message').html('Harus diisi dengan format '+ v.message);
         valid = false;
+        triger.attr('disabled',false)
         return false;
       }
   }
@@ -75,7 +76,8 @@ function submitLogin(){
   }
 }
 function responseLogin(response){
-  if(response.validation.status==false){
+  triger.attr('disabled',false)
+  if(typeof response.validation != 'undefined'){
     showAlert('alert-danger', response.validation.message)
     return false;
   }
