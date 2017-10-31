@@ -19,14 +19,14 @@ function showHome(){
 			$.each(dataHome.menu, function(i, v){
         if(sessionStorage['token']!=''){
           if(v.target!='callLogin' && v.target !='callLogout'){
-      	     html += '<li><a href="#" class="link" target="'+v.target+'">'+
+      	     html += '<li><a href="#" class="link" data-toggle="modal" data-target="#myModal" target="'+v.target+'">'+
                 '<span class="fa fa-'+v.icon+'"></span> '+
                 v.label+'</a></li>';
               j++;
           }
         } else {
           if(v.target!='callLogin' && v.target!='callSubmission' && v.target !='callLogout'){
-            html += '<li><a href="#" class="link" target="'+v.target+'">'+
+            html += '<li><a href="#" data-toggle="modal" data-target="#myModal" class="link" target="'+v.target+'">'+
                '<span class="fa fa-'+v.icon+'"></span> '+
                v.label+'</a></li>';
              j++;
