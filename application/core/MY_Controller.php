@@ -13,6 +13,8 @@ class MY_Controller extends CI_Controller
     public $_session;
     public $_config;
     public $obj;
+    public $validPost =true;
+    public $post = [];
 
     public function __construct()
     {
@@ -45,6 +47,14 @@ class MY_Controller extends CI_Controller
           }
         }
 
+        if(isset($this->obj->field)){
+          $this->load->library('form_validation');
+          foreach ($this->obj->field as $key => $value) {
+            $this->form_validation->set_rules($key,$key,$value);
+          }
+          $this->post['status'] = $this->form_validation->run();
+          $this->post['message'] = validation_errors();
+        }
         if (strtoupper($this->uri->segments[1]) != 'GUEST') {
             if (isset($_SERVER['HTTP_BEARER'])) {
                 $this->_session = $this->jwt->decode($_SERVER['HTTP_BEARER']);
@@ -85,6 +95,10 @@ class MY_Controller extends CI_Controller
 
     public function execute()
     {
+      if($this->post['status'] == false){
+        $this->response->success(['validation'=>$this->post]);
+        return false;
+      }
       $this->lib->render();
     }
 

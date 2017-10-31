@@ -84,9 +84,7 @@ function showQuestion(){
 	var option= '';
 	if(current<question.length || current>=0){
 		if(typeof dataItem[current]=='undefined'){
-      console.log(question[current])
-      console.log(tester+'/read/quiz_run/'+question[current].id)
-			sendRequest(renderItem,tester+'/read/quiz_run/'+question[current].id);
+      sendRequest(renderItem,tester+'/read/quiz_run/'+question[current].id);
 		}else{
 			renderQuiz(dataItem[current]);
 		}
@@ -151,6 +149,12 @@ function showQuiz(response){
 }
 function quiz(){
   var target = objTriger.attr('target').split('/');
+  console.log($(window).width())
+  if($(window).width()<600 || $(window).height()<600){
+    console.log($('#question').attr('style'))
+    $('#question').attr('style','');
+    $('#option').attr('style','');
+  }
 	tester = target[0];
 	sendRequest(showQuiz,objTriger.attr('target'));
 }

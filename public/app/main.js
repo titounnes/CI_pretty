@@ -3,6 +3,8 @@
   var myFunc = new Function("return "+param)
   myFunc();
 }*/
+
+//sessionStorage['token']=localStorage['token']='';
 if (typeof sessionStorage['token'] == 'undefined') {
   sessionStorage['token'] = localStorage['token'];
 }

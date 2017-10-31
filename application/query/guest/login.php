@@ -16,7 +16,7 @@ $obj->join = [
 	['groups g','g.id=ug.group_id','inner']
 ];
 $obj->field = [
-		'identity'=>'identity',
-		'password'=>'password',
+		'identity'=>'required|regex_match[/[A-Za-z0-9\.\_\@]/]|min_length[6]|max_length[50]',
+		'password'=>'required|min_length[6]|max_length[20]',
 ];
 $obj->key = 'identity';

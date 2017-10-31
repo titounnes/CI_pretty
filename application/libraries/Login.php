@@ -10,6 +10,7 @@ class Login
     }
 
     private function build(){
+
       $where = [];
 
       if(isset($this->CI->obj->field))

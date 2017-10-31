@@ -43,14 +43,16 @@ var contentLogin = {
       label: 'ID Pengguna',
       name: 'identity',
       type: 'text',
-      regex: /([a-zA-Z0-9]){5,20}/i,
+      regex: /([a-zA-Z0-9_.]){6,50}/i,
       message: '6-20 karakter'
     },
     {
       icon: 'eye',
       label: 'Kata Sandi',
       name: 'password',
+      regex: /([a-zA-Z0-9._@]){6,20}/i,
       type: 'password',
+      message: 'Harus diisi 6-20 karakter '
     },
   ]
 }
@@ -73,6 +75,10 @@ function submitLogin(){
   }
 }
 function responseLogin(response){
+  if(response.validation.status==false){
+    showAlert('alert-danger', response.validation.message)
+    return false;
+  }
   if(response.status=='login'){
       localStorage['token'] = sessionStorage['token'] = response.token;
       $('#myModal').modal('hide');

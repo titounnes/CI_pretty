@@ -11,7 +11,7 @@ $obj = new stdClass();
 $obj->table = 'users';
 $obj->field = [
   'password' => 'password',
-  'username' => 'username',
+  'username' => '[a-zA-Z0-9]{6,20}|',
 ];
 $obj->relation = 'users_groups';
 $obj->pk = 'user_id';
