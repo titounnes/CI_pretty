@@ -22,7 +22,7 @@ function showHome() {
         html += '<li><a href="#" class="link" ' + (v.type == 'popup' ? 'data-toggle="modal" data-target="#myModal" ' : '') + ' target="' + v.target + '">' +
           '<span class="fa fa-' + v.icon + '"></span> ' +
           v.label + '</a></li>';
-        j++;console.log(1);
+        j++;
       }
     } else {
       if (typeof v.login == 'undefined') {
@@ -77,7 +77,7 @@ function showHome() {
     if (sessionStorage['token'] != '' && sessionStorage['token'] != 'undefined') {
       if (v.target != 'callLogin' && v.target != 'callRegister') {
         var btn = v.target == 'callLogout' ? 'danger' : 'info';
-        html += '<div class="col-sm-2 col-md-2" style="margin-bottom:10px">' +
+        html += '<div class="col-sm-2 col-md-2 col-xs-4 col-sm-3" style="margin-bottom:10px">' +
           '<a href="#" class="btn btn-' + btn + '" ' + (v.type == 'popup' ? 'data-toggle="modal" data-target="#myModal"' : '') + ' style="width:100%" target="' + v.target + '"><h1><span class="fa fa-' + v.icon + ' fa-2x"></span></h1>' +
           '<p>' + v.label + '</p></a>' +
           '</div>'
@@ -87,7 +87,7 @@ function showHome() {
       if (typeof v.login == 'undefined') {
         if (v.target != 'callSubmission' && v.target != 'callLogout') {
           var btn = v.target == 'callLogin' ? 'success' : 'info';
-          html += '<div class="col-sm-2 col-md-2">' +
+          html += '<div class="col-sm-2 col-md-2 col-xs-4 col-sm-3">' +
             '<a href="#" ' + (v.type == 'popup' ? 'data-toggle="modal" data-target="#myModal"' : '') + ' class="btn btn-' + btn + '" style="width:100%" target="' + v.target + '"><h1><span class="fa fa-' + v.icon + ' fa-2x"></span></h1>' +
             '<p>' + v.label + '</p></a>' +
             '</div>'
@@ -96,7 +96,7 @@ function showHome() {
       }
     }
   })
-  html += '</div>' +
+  html += '<div id="qrcode"></div></div>' +
     '</div>' +
     '<footer class="container-fluid text-center">' +
     '<p>' + dataHome.footer[0] + '</p>' +
@@ -104,6 +104,7 @@ function showHome() {
     '</footer>'
   html += '</div></div></div>';
   $('#home').html(html)
+  new QRCode(document.getElementById("qrcode"), "https://bpptpm.e-project-tech.com/");
 }
 var callInfo = function() {
   triger.attr('disabled', false)
