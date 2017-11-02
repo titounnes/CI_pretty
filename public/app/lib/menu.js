@@ -1,10 +1,7 @@
 /*@eProject Technology, author: Harjito*/
 var menus = [];
 var menuList = {
-  teacher: "Guru",
-  student: "Siswa",
   operator: "Operator",
-  parentClassroom: "Wali Kelas",
   admin : "Administrator",
 }
 function getMenu(method){
@@ -39,9 +36,10 @@ function toggleMenu(obj){
 	return parent;
 }
 function showMenu(){
+  $('#sidebar').html('')
   var infoUser = parseToken(sessionStorage['token'])
   var roles = infoUser.roles;
-	switcher = '<select class="swapper-switch form-control">';
+  switcher = '<select class="swapper-switch form-control">';
   var j = 0;
   $.each(roles, function(i, v) {
     if (typeof menuList[v] != 'undefined') {
@@ -55,7 +53,7 @@ function showMenu(){
   if (j > 1) {
     $('#switch').html(switcher);
   }
-  $('#menubar').load('app/user/home/view/userInfo.html?a=1');
+  $('#menubar').load('app/user/home/view/userInfo.html?a=3');
   $.each(roles, function(i, v) {
     if (v != '') {
       getJSON('nodeMenu',getMenu(v));
@@ -69,3 +67,13 @@ function nodeMenu(){
   }
 }
 var currentUser = '';
+$(document).on('change','.swapper-switch',function(){
+  currentUser= $(this).val();
+  console.log(getMenu($(this).val()))
+  getJSON(nodeMenu,getMenu($(this).val()));
+  //nodeMenu();
+  //
+//  $('#sidebar').html('')
+//  $('#sidebar').append(menuTree(menuItem, user, 0));
+  console.log($(this).val())
+})

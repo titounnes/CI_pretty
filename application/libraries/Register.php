@@ -13,15 +13,16 @@ class Register
       if(isset($this->CI->obj->field))
       {
         foreach ($this->CI->obj->field as $k=>$f) {
-            $field[$k] = $this->CI->security->xss_clean($this->CI->input->post($f));
+            $field[$k] = $this->CI->security->xss_clean($this->CI->input->post($k));
             if($k=='password'){
-              $field[$k] = password_hash($this->CI->input->post($f),PASSWORD_DEFAULT, ['cost' => 12]);
+              $field[$k] = password_hash($this->CI->input->post($k),PASSWORD_DEFAULT, ['cost' => 12]);
             }
         }
       }
 
       $where = $field;
       unset($where['password']);
+
       if($this->CI->db
         ->get_where($this->CI->obj->table, $where)->num_rows()>0){
           return false;

@@ -12,6 +12,7 @@ $obj->table = 'users';
 $obj->field = [
   'username' => 'required|regex_match[/[A-Za-z0-9\.\_\@]/]|min_length[6]|max_length[50]|is_unique[users.username]',
   'password' => 'required|min_length[6]|max_length[20]',
+  'name' => 'required|min_length[6]|max_length[50]',
 ];
 $obj->relation = 'users_groups';
 $obj->pk = 'user_id';

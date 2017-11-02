@@ -40,6 +40,9 @@ function getView(user,path){
   return 'app/user/'+user+'/view/'+path.replace(/_/,'/')+'.js';
 }
 function parseToken(token){
+  if(token == 'undefined'){
+	return false;
+  }
   var payload = token.split('.')[1];
   var payload = payload.replace(/-/,'+').replace(/_/,'/');
   return JSON.parse(window.atob(payload));
@@ -92,6 +95,9 @@ function sendRequest(callback, method, data) {
     },
     success: callback,
     complete: function(response) {
+      if(response.status==500){
+        console.log(response.responseText)
+      }
       action = false;
     },
     error: function() {
@@ -108,6 +114,10 @@ function homeScreen(){
     clientPanel()
   }else{
     var infoUser = parseToken(sessionStorage['token']);
+	if(infoUser==false){
+		clientPanel();
+		return false;
+	}
     if(infoUser.roles[0]=='registrar'){
       clientPanel();
     }else{
@@ -126,21 +136,43 @@ function adminPanel(){
   getLib('showMenu', 'menu');
   getJSON('greetingView',getView('home','greeting'));
 }
+$(document).on('click', '.tab', function(e){
+  e.preventDefault();
+})
 $(document).on('click', '.btn, .link', function(e){
   e.preventDefault();
-  if($(this).attr('disabled')){
+  /*if($(this).attr('disabled')){
     return true;
-  }
+  }*/
   triger = $(this);
-  triger.attr('disabled',true);
+  //triger.attr('disabled',true);
+  $('#process').html('Sedang memproses permintaan. Mohon tunggu sampai proses selesai...')
   if(typeof $(this).attr('target')=='undefined'){
     return false;
   }
   var callFunc = new Function($(this).attr('target')+"()")
   return callFunc();
 })
-$(document).on('keyup','.form-control', function(){
+$(document).on('keyup change focus mouseover','.form-control', function(){
   $('#'+$(this).prop('name')+'Message').html('')
+})
+$(document).on('mouseover','.btn',function(){
+/*  if($(this).children()[0].nodeName=='H1'){
+      var fa = $(this).children('h1');
+      var fa = $(fa).children('span');
+      $(fa).addClass('faa-wrench animated')
+      return false;
+  }
+  $(this).children('span').addClass('faa-wrench animated');*/
+})
+$(document).on('mouseout','.btn',function(){
+/*  if($(this).children()[0].nodeName=='H1'){
+      var fa = $(this).children('h1');
+      var fa = $(fa).children('span');
+      $(fa).removeClass('faa-wrench animated')
+      return false;
+  }
+  $(this).children('span').removeClass('faa-wrench animated');*/
 })
 $(document).keyup(function(e) {
   switch (e.which) {
@@ -155,16 +187,48 @@ $(document).keyup(function(e) {
       break;
   }
 })
-function calllogout() {
-  localStorage['token'] = '';
-  sessionStorage['token'] = '';
-  clientPanel();
-}
 function showAlert(type, message) {
   $('.alert').addClass(type).html(message).show(message)
   setTimeout(function() {
     $('.alert').fadeOut()
   }, 3000)
+}
+var callLogout = function() {
+  triger.attr('disabled', false);
+  exclamation('Yakin akan keluar?', 'cancel', {
+    target: 'confirmLogout',
+    label: 'OK'
+  })
+}
+function permission(key, storage) {
+  if (key != '' && typeof JSON.parse(localStorage[storage])[key] == 'undefined') {
+    alert('Anda melakukan akses secara tidak sah');
+    return false;
+  }
+  return true;
+}
+var confirmLogout = function() {
+  triger.attr('disabled', false)
+  localStorage['token'] = '';
+  sessionStorage['token'] = '';
+  $('#home').show();
+  $('#page').hide();
+  getLib('showHome', 'home');
+}
+function exclamation(message, cancel, confirm) {
+  var html = '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<span class="fa fa-exclamation"></span> Konfirmasi' +
+    '</div>' +
+    '<div class="modal-body">' +
+    '<div class="text-center"><h3>' + message + '?</h3></div>' +
+    '</div>' +
+    '<div class="modal-footer">' +
+    '<button type="button" class="btn btn-default" data-dismiss="modal">' + cancel + '</button>' +
+    '<a class="btn btn-danger" data-dismiss="modal" target="' + confirm.target + '">' + confirm.label + '</a>' +
+    '</div>' +
+    '</div>'
+  $('#dialog-body').html(html)
 }
 var triger;
 var action = false;

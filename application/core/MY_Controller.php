@@ -55,7 +55,6 @@ class MY_Controller extends CI_Controller
           }
           $this->validate['status'] = $this->form_validation->run();
           $this->validate['message'] = validation_errors();
-
         }
         if (strtoupper($this->uri->segments[1]) != 'GUEST') {
             if (isset($_SERVER['HTTP_BEARER'])) {
@@ -81,7 +80,7 @@ class MY_Controller extends CI_Controller
             }
         }
 
-        if (! $this->_session || ! in_array($this->uri->segments[1], array_merge($this->_session->roles, $this->_session->jobs))) {
+        if (! $this->_session || ! in_array($this->uri->segments[1], array_merge($this->_session->roles))) {
             if (! in_array(strtoupper($this->uri->segments[1]), ['GUEST','HOME','USER'])) {
                 $this->load->library(['forbidden'=>'lib']);
                 return false;
@@ -97,11 +96,17 @@ class MY_Controller extends CI_Controller
 
     public function execute()
     {
-      if($this->validate['status'] == false){
-        $this->response->success(['validation'=>$this->validate]);
-        return false;
-      }
       $this->lib->render();
+      return 1;
+      if(isset($this->obj->field)){
+        if($this->validate['status'] == false){
+          $this->response->success(['validation'=>$this->validate]);
+          return false;
+        }
+        $this->lib->render();
+      }else{
+        $this->lib->render();
+      }
     }
 
     public function show()
