@@ -128,7 +128,7 @@ function homeScreen(){
 function clientPanel(){
   $('#page').hide();
   $('#home').show();
-  getLib('showHome','home');
+  getLib('showHome','guest/home');
 }
 function adminPanel(){
   $('#page').show();
@@ -190,7 +190,7 @@ $(document).keyup(function(e) {
 function showAlert(type, message) {
   $('.alert').addClass(type).html(message).show(message)
   setTimeout(function() {
-    $('.alert').fadeOut()
+    $('.alert').hide()
   }, 3000)
 }
 var callLogout = function() {
@@ -213,22 +213,20 @@ var confirmLogout = function() {
   sessionStorage['token'] = '';
   $('#home').show();
   $('#page').hide();
-  getLib('showHome', 'home');
+  getLib('showHome', 'guest/home');
 }
 function exclamation(message, cancel, confirm) {
   var html = '<div class="modal-content">' +
     '<div class="modal-header">' +
-    '<span class="fa fa-exclamation"></span> Konfirmasi' +
+    '<h4><span class="fa fa-exclamation"></span> Konfirmasi</h4>'+
     '</div>' +
     '<div class="modal-body">' +
     '<div class="text-center"><h3>' + message + '?</h3></div>' +
-    '</div>' +
-    '<div class="modal-footer">' +
     '<button type="button" class="btn btn-default" data-dismiss="modal">' + cancel + '</button>' +
     '<a class="btn btn-danger" data-dismiss="modal" target="' + confirm.target + '">' + confirm.label + '</a>' +
     '</div>' +
     '</div>'
-  $('#dialog-body').html(html)
+  $('#dialog-body').html(html).removeClass('form').removeClass('reader').addClass('confirm')
 }
 var triger;
 var action = false;

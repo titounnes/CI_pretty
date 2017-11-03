@@ -45,7 +45,6 @@ class Jwt
 
     public function decode($jwt, $key = 'hgtrkj3542kjh', $verify = true)
     {
-        $setting = json_decode(read_file(SETTING));
         $tks = explode('.', $jwt);
         if (count($tks) != 3) {
             return false;
