@@ -65,7 +65,7 @@ footer {
 }
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
-@media (max-width: 600px) {
+@media screen and (orientation:portrait) {
   .form, .confirm, .reader{
     width: 90%;
     top:50%;
@@ -74,14 +74,37 @@ footer {
     transform: translate(-53%, -50%) !important;
     overflow-y: auto;
   }
-  #home .carousel-caption {
-    display: none;
+  #home .carousel {
+    display: '';
   }
   .container h1{
     display: none;
   }
 }
-
+@media screen and (orientation:landscape) {
+  .form, .confirm, .reader{
+    width: 90%;
+    top:50%;
+    left:50%;
+    height:90%;
+    transform: translate(-53%, -50%) !important;
+    overflow-y: auto;
+  }
+  #home .carousel {
+    display: '';
+  }
+  .container h1{
+    display: none;
+  }
+}
+@media (max-width : 600px) {
+  .carousel {
+    display: 'none';
+  }
+  .container h1{
+    display: none;
+  }
+}
 #home-icon{
     max-width: 1000px;
     margin:auto;
